@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Replit
+.replit
+.config/
+.upm/
+.cache/
+.pythonlibs/
+.breakpoints
+replit.nix
+
+# Project specific
+inkmerge-project.tar.gz
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Environment variables (secrets are managed by Replit)
+.env
+
+# Temporary files
+*.tmp
+*.bak
+*~

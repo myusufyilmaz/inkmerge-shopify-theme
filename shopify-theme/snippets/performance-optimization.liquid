@@ -1,0 +1,83 @@
+<script>
+/**
+ * InkMerge Performance Optimization
+ * Lazy loading, intersection observer, and performance enhancements
+ */
+(function() {
+  'use strict';
+
+  if ('loading' in HTMLImageElement.prototype) {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+      if (img.dataset.src) {
+        img.src = img.dataset.src;
+      }
+      if (img.dataset.srcset) {
+        img.srcset = img.dataset.srcset;
+      }
+    });
+  } else {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/lazysizes@5/lazysizes.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+
+  const prefetchLinks = () => {
+    const links = document.querySelectorAll('a[href^="/products"], a[href^="/collections"]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const link = entry.target;
+          const href = link.getAttribute('href');
+          if (href && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
+            const prefetch = document.createElement('link');
+            prefetch.rel = 'prefetch';
+            prefetch.href = href;
+            document.head.appendChild(prefetch);
+          }
+          observer.unobserve(link);
+        }
+      });
+    }, { rootMargin: '50px' });
+
+    links.forEach(link => observer.observe(link));
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', prefetchLinks);
+  } else {
+    prefetchLinks();
+  }
+
+  window.addEventListener('load', () => {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        const unusedImages = document.querySelectorAll('img:not([loading])');
+        unusedImages.forEach(img => {
+          if (!img.complete) {
+            img.loading = 'lazy';
+          }
+        });
+      });
+    }
+  });
+
+  const optimizeVideos = () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+      video.preload = 'metadata';
+      if (video.hasAttribute('autoplay')) {
+        video.muted = true;
+        video.playsInline = true;
+      }
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', optimizeVideos);
+  } else {
+    optimizeVideos();
+  }
+})();
+</script>

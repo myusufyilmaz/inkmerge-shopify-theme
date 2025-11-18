@@ -1,0 +1,108 @@
+{% comment %}
+InkMerge Top Announcement Banner - Urgency & Free Shipping
+Orange color psychology for action
+{% endcomment %}
+
+<div class="inkmerge-top-banner">
+  <div class="banner-content">
+    <span class="banner-icon">🎉</span>
+    <span class="banner-text">
+      <strong>New Customer Special:</strong> 10% Off Your First Order + FREE Shipping Over $99
+    </span>
+    <a href="/collections/all" class="banner-cta">Shop Now →</a>
+  </div>
+</div>
+
+<style>
+.inkmerge-top-banner {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.banner-icon {
+  font-size: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.banner-text {
+  color: white;
+}
+
+.banner-text strong {
+  font-weight: 800;
+}
+
+.banner-cta {
+  background: white;
+  color: #D97706;
+  padding: 6px 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.banner-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.4);
+  color: #B45309;
+}
+
+@media (max-width: 768px) {
+  .inkmerge-top-banner {
+    font-size: 13px;
+    padding: 10px 15px;
+  }
+  
+  .banner-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .banner-cta {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "InkMerge Top Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "New Customer Special: 10% Off Your First Order + FREE Shipping Over $99"
+    }
+  ],
+  "presets": [
+    {
+      "name": "InkMerge Top Banner"
+    }
+  ]
+}
+{% endschema %}

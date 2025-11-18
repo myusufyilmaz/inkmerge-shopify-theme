@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+Allow: /*.js
+Allow: /*.json
+Allow: /*.css
+
+# Block only admin and sensitive areas
+Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /orders
+Disallow: /apps/
+Disallow: /search
+Disallow: /preview_theme_id*
+Disallow: /select_theme_id*
+Disallow: /?frame=true
+Disallow: /cdn-cgi/
+
+# Allow crawling of product and collection JSON
+Allow: /products/*.json
+Allow: /collections/*.json
+
+# Sitemap declaration
+Sitemap: https://{{ shop.domain }}/sitemap.xml

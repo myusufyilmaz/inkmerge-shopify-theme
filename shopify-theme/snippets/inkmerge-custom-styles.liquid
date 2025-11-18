@@ -1,0 +1,586 @@
+{% comment %}
+  InkMerge Custom Styles - Color Psychology Applied
+  Based on research: Blue (trust, 31% preferred) + Orange (urgency, +46.3% purchase intent)
+  Colors predict 34.5% of purchase decisions - strategic implementation throughout
+{% endcomment %}
+
+<style>
+:root {
+  /* Color Psychology - Research-Backed Palette */
+  /* Blue = Most Preferred (31%), Trust, Professionalism (Cool Color) */
+  --inkmerge-blue-primary: #0891B2;     /* Main brand blue - trust */
+  --inkmerge-blue-dark: #0E7490;        /* Darker blue for depth */
+  --inkmerge-blue-light: #06B6D4;       /* Lighter blue for highlights */
+  --inkmerge-blue-lightest: #F0F9FF;    /* Background blue */
+  
+  /* Orange = Action & Urgency (46.3% higher purchase intent - Warm Color) */
+  --inkmerge-orange-primary: #F59E0B;   /* CTA buttons, urgency */
+  --inkmerge-orange-dark: #D97706;      /* Hover states */
+  --inkmerge-orange-light: #FEF3C7;     /* Backgrounds */
+  
+  /* Supporting Colors */
+  --inkmerge-green: #10B981;            /* Success, trust badges */
+  --inkmerge-red: #EF4444;              /* Urgency, errors */
+  
+  /* Neutrals */
+  --inkmerge-gray-900: #0F172A;         /* Headings */
+  --inkmerge-gray-700: #334155;         /* Body text */
+  --inkmerge-gray-600: #475569;         /* Secondary text */
+  --inkmerge-gray-200: #E2E8F0;         /* Borders */
+  --inkmerge-gray-100: #F1F5F9;         /* Backgrounds */
+  --inkmerge-gray-50: #F8FAFC;          /* Light backgrounds */
+  
+  /* Typography */
+  --inkmerge-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --inkmerge-font-heading: 'Inter', var(--inkmerge-font);
+}
+
+/* Global Font */
+body {
+  font-family: var(--inkmerge-font) !important;
+  color: var(--inkmerge-gray-700);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--inkmerge-font-heading);
+  color: var(--inkmerge-gray-900);
+  font-weight: 700;
+}
+
+/* PRIMARY CTA BUTTONS - Orange for Maximum Conversion (Warm Color Psychology) */
+.button--primary,
+.btn-primary,
+.product__form--atc,
+button[type="submit"],
+.add-to-cart-button {
+  background: linear-gradient(135deg, var(--inkmerge-orange-primary) 0%, var(--inkmerge-orange-dark) 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 14px 32px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3) !important;
+  cursor: pointer !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button--primary:hover,
+.btn-primary:hover,
+.product__form--atc:hover,
+button[type="submit"]:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
+  background: linear-gradient(135deg, var(--inkmerge-orange-dark) 0%, #B45309 100%) !important;
+}
+
+/* SECONDARY BUTTONS - Blue for Trust */
+.button--secondary,
+.btn-secondary {
+  background: white !important;
+  color: var(--inkmerge-blue-primary) !important;
+  border: 2px solid var(--inkmerge-blue-primary) !important;
+  padding: 14px 32px !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.button--secondary:hover,
+.btn-secondary:hover {
+  background: var(--inkmerge-blue-lightest) !important;
+  transform: translateY(-2px);
+}
+
+/* LINKS - Blue for Trust & Clicks */
+a:not(.button):not(.btn) {
+  color: var(--inkmerge-blue-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:not(.button):not(.btn):hover {
+  color: var(--inkmerge-blue-dark);
+  text-decoration: underline;
+}
+
+/* HEADER STYLING - Trust & Professional */
+.page__header {
+  background: white !important;
+  border-bottom: 1px solid var(--inkmerge-gray-200);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header__logo a {
+  color: var(--inkmerge-blue-primary) !important;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.nav__link {
+  color: var(--inkmerge-gray-700) !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover,
+.nav__link--active {
+  color: var(--inkmerge-blue-primary) !important;
+}
+
+/* TOP INFO BAR - Urgency Orange */
+.top-info-bar {
+  background: linear-gradient(135deg, var(--inkmerge-orange-primary), var(--inkmerge-orange-dark));
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* FOOTER - Trust Blue Background */
+.footer {
+  background: var(--inkmerge-gray-900) !important;
+  color: var(--inkmerge-gray-200) !important;
+}
+
+.footer h3,
+.footer h4 {
+  color: white !important;
+}
+
+.footer a {
+  color: var(--inkmerge-blue-light) !important;
+}
+
+.footer a:hover {
+  color: white !important;
+}
+
+/* TRUST BADGES - Conversion Elements */
+.inkmerge-trust-badges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+  background: var(--inkmerge-gray-50);
+}
+
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.trust-badge:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.15);
+}
+
+.trust-badge-icon {
+  font-size: 3rem;
+  color: var(--inkmerge-blue-primary);
+}
+
+.trust-badge-title {
+  font-weight: 700;
+  color: var(--inkmerge-gray-900);
+  font-size: 1.125rem;
+}
+
+.trust-badge-description {
+  color: var(--inkmerge-gray-600);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* PRICING FORMULA - Transparency = Trust */
+.inkmerge-pricing-formula {
+  background: linear-gradient(135deg, var(--inkmerge-blue-primary), var(--inkmerge-blue-dark));
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  margin: 3rem 0;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3);
+}
+
+.pricing-formula-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pricing-formula-equation {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.pricing-formula-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.price-example {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.price-example-size {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.price-example-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--inkmerge-orange-light);
+}
+
+/* USP CARDS - Benefits Over Features */
+.inkmerge-usp-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 4rem 1.5rem;
+  background: white;
+}
+
+.usp-card {
+  background: var(--inkmerge-gray-50);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 5px solid var(--inkmerge-blue-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.usp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: var(--inkmerge-blue-lightest);
+  border-radius: 0 0 0 100%;
+  opacity: 0.5;
+}
+
+.usp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(8, 145, 178, 0.2);
+  border-left-color: var(--inkmerge-orange-primary);
+}
+
+.usp-icon {
+  font-size: 3.5rem;
+  color: var(--inkmerge-orange-primary);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.usp-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--inkmerge-gray-900);
+  margin-bottom: 1rem;
+}
+
+.usp-description {
+  color: var(--inkmerge-gray-600);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* PRODUCT CARDS - Conversion Optimized */
+.product-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(8, 145, 178, 0.15);
+}
+
+.product-card__image {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--inkmerge-orange-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.product-card__title {
+  color: var(--inkmerge-gray-900);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.product-card__price {
+  color: var(--inkmerge-blue-primary);
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+/* TESTIMONIALS */
+.testimonial {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-top: 4px solid var(--inkmerge-blue-primary);
+}
+
+.testimonial-stars {
+  color: var(--inkmerge-orange-primary);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--inkmerge-gray-700);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-weight: 700;
+  color: var(--inkmerge-gray-900);
+}
+
+/* URGENCY & SCARCITY ELEMENTS */
+.urgency-banner {
+  background: linear-gradient(135deg, var(--inkmerge-red), #DC2626);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  animation: pulse-urgency 2s infinite;
+}
+
+@keyframes pulse-urgency {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+.stock-indicator {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--inkmerge-orange-light);
+  color: var(--inkmerge-orange-dark);
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* SOCIAL PROOF */
+.social-proof-bar {
+  background: var(--inkmerge-blue-lightest);
+  border-left: 4px solid var(--inkmerge-blue-primary);
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.social-proof-bar strong {
+  color: var(--inkmerge-blue-dark);
+}
+
+/* CARE INSTRUCTIONS */
+.care-instructions {
+  background: var(--inkmerge-gray-50);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  border: 2px solid var(--inkmerge-gray-200);
+}
+
+.care-instructions h3 {
+  color: var(--inkmerge-blue-primary);
+  font-weight: 800;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.care-instructions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.care-instructions li {
+  padding: 0.75rem 0;
+  padding-left: 2.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.care-instructions li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--inkmerge-green);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .inkmerge-trust-badges {
+    flex-direction: column;
+  }
+  
+  .inkmerge-usp-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .pricing-formula-equation {
+    font-size: 1.75rem;
+  }
+  
+  .pricing-formula-examples {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ACCESSIBILITY */
+.button--primary:focus,
+.button--secondary:focus,
+a:focus {
+  outline: 3px solid var(--inkmerge-orange-primary);
+  outline-offset: 3px;
+}
+
+/* PERFORMANCE - Image Lazy Loading */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* SUCCESS/ERROR STATES */
+.success-message {
+  background: var(--inkmerge-green);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.error-message {
+  background: var(--inkmerge-red);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+/* FREE SHIPPING BANNER */
+.free-shipping-banner {
+  background: var(--inkmerge-green);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* GUARANTEE BADGE */
+.guarantee-badge {
+  background: var(--inkmerge-blue-lightest);
+  border: 2px solid var(--inkmerge-blue-primary);
+  color: var(--inkmerge-blue-dark);
+  padding: 15px 25px;
+  border-radius: 12px;
+  display: inline-block;
+  font-weight: 700;
+  margin: 20px 0;
+}
+</style>
+
+{% comment %}
+  Lazy Loading Script for Performance
+{% endcomment %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Lazy Load Images
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.classList.add('loaded');
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
+  } else {
+    // Fallback for older browsers
+    lazyImages.forEach(img => img.classList.add('loaded'));
+  }
+  
+  // Add active states to buttons
+  const buttons = document.querySelectorAll('.button--primary, .btn-primary');
+  buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 150);
+    });
+  });
+});
+</script>

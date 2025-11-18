@@ -1,0 +1,49 @@
+{% if block.settings.image %}
+  <modal-opener
+    data-modal="#PopupModal-{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    <button
+      id="ProductPopup-{{ block.id }}"
+      class="product-popup-modal__opener link underlined{% if block.settings.noMargin or noMargin %} margin__bottom--reduced{%endif-%}"
+      type="button"
+      aria-haspopup="dialog"
+    >
+      {{ block.settings.label | escape }}
+    </button>
+  </modal-opener>
+
+  <modal-dialog id="PopupModal-{{ block.id }}" class="popup-modal" {{ block.shopify_attributes }}>
+    <div
+      role="dialog"
+      aria-label="{{ block.settings.text }}"
+      aria-modal="true"
+      class="popup-modal__content"
+      tabindex="-1"
+    >
+      <span
+        id="ModalClose-{{ block.id }}"
+        class="popup-modal__toggle"
+      >
+        <i class="uil uil-multiply"></i>
+      </span>
+      <div class="popup-modal__content-info">
+        {{ block.settings.image | image_url: width: nil | image_tag }}
+      </div>
+    </div>
+  </modal-dialog>
+{% elsif content_for_header contains 'Shopify.designMode' %}
+  <modal-opener
+    data-modal="#PopupModal-{{ block.id }}"
+    {{ block.shopify_attributes }}
+  >
+    <button
+      id="ProductPopup-{{ block.id }}"
+      class="product-popup-modal__opener link underlined{% if block.settings.noMargin or noMargin %} margin__bottom--reduced{%endif-%}"
+      type="button"
+      aria-haspopup="dialog"
+    >
+      {{ block.settings.label | escape }}
+    </button>
+  </modal-opener>
+{% endif %}

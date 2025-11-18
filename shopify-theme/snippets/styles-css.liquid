@@ -1,0 +1,99 @@
+.card--default:hover {
+  z-index:1;
+}
+
+.share__button--twitter:hover svg path {
+  fill: var(--bg) !important;
+}
+
+.add-to-cart__success--container {
+  width:100%;
+}
+
+.product-popup-modal__opener {
+  margin-bottom: 32px;
+}
+
+button.link {
+  color: var(--linkColor);
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+button.link.underlined {
+  text-decoration: underline;
+}
+
+button.link:hover{
+  color: var(--accentColor);
+}
+
+/* Modal */
+
+.popup-modal {
+  box-sizing: border-box;
+  opacity: 0;
+  position: fixed;
+  visibility: hidden;
+  z-index: -1;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 100%;
+  background: rgba(0,0,0, 0.2);
+  height: 100%;
+}
+
+.popup-modal__content-info {
+  text-align: center;
+}
+
+.popup-modal__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  position: sticky;
+  padding: 1.2rem 0;
+  z-index: 2;
+  top: 15px;
+  width: 4rem;
+  margin: 0 0 0 auto;
+}
+
+.popup-modal[open] {
+  opacity: 1;
+  visibility: visible;
+  z-index: 101;
+}
+
+.popup-modal__content {
+  background-color: var(--bodyBackgroundColor);
+  min-width: 680px;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  top: 0px;
+  overflow: auto;
+  margin: 5rem auto 0px;
+  padding: 0 2rem 2rem;
+}
+
+
+@media screen and (max-width: 767px) {
+  .popup-modal__content {
+    min-width: 93%;
+  }
+}
+
+/* End Modal */
+
+.popup-modal__content-info img {
+  object-fit: contain;
+}
+
+.button--secondary__filled {
+  color: #fff;
+}

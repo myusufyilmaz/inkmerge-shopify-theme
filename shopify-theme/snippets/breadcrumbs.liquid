@@ -1,0 +1,96 @@
+{% unless template == 'index' or settings.breadcrumbs == false %}
+{% assign breadcrumb_items = '' | split: '' %}
+{% capture home_item %}{"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ shop.url }}"}{% endcapture %}
+{% assign breadcrumb_items = breadcrumb_items | push: home_item %}
+{% assign position = 2 %}
+
+<nav class="breadcrumb inherit" role="navigation" aria-label="breadcrumbs">
+  <a href="/{% unless request.locale.primary %}{{ request.locale.root_url }}{% endunless %}" title="{{'navigation.breadcrumbs.home' | t}}">{{'navigation.breadcrumbs.home' | t}}</a>
+  {% if template contains 'page' %}
+    <span aria-hidden="true">/</span>
+    <span>{{ page.title }}</span>
+    {% capture page_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ page.title | json }}}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: page_item %}
+  {% elsif template == 'list-collections' %}
+    <span aria-hidden="true">/</span>
+    <span>{{'navigation.breadcrumbs.collections' | t}}</span>
+    {% capture coll_item %}{"@type": "ListItem", "position": {{ position }}, "name": "Collections", "item": "{{ shop.url }}/collections"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: coll_item %}
+  {% elsif template == 'cart' %}
+    <span aria-hidden="true">/</span>
+    <span>{{'navigation.breadcrumbs.cart' | t}}</span>
+    {% capture cart_item %}{"@type": "ListItem", "position": {{ position }}, "name": "Cart"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: cart_item %}
+  {% elsif template contains 'product' %}
+    {% if collection.url %}
+      <span aria-hidden="true">/</span>
+      {{ collection.title | link_to: collection.url }}
+      {% capture coll_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ collection.title | json }}, "item": "{{ shop.url }}{{ collection.url }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: coll_item %}
+      {% assign position = position | plus: 1 %}
+    {% endif %}
+    <span aria-hidden="true">/</span>
+    <span>{{ product.title }}</span>
+    {% capture prod_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ product.title | json }}, "item": "{{ shop.url }}{{ product.url }}"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: prod_item %}
+  {% elsif template contains 'collection' and collection.handle %}
+    <span aria-hidden="true">/</span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      {% capture coll_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ collection.title | json }}, "item": "{{ shop.url }}/collections/{{ collection.handle }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: coll_item %}
+      {% assign position = position | plus: 1 %}
+      <span aria-hidden="true">/</span>
+      <span>{{ current_tags | join: " + " }}</span>
+      {% capture tag_item %}{"@type": "ListItem", "position": {{ position }}, "name": "{{ current_tags | join: ' + ' }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: tag_item %}
+    {% else %}
+      <span>{{ collection.title }}</span>
+      {% capture coll_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ collection.title | json }}, "item": "{{ shop.url }}{{ collection.url }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: coll_item %}
+    {% endif %}
+  {% elsif template == 'blog' %}
+    <span aria-hidden="true">/</span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      {% capture blog_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ blog.title | json }}, "item": "{{ shop.url }}{{ blog.url }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: blog_item %}
+      {% assign position = position | plus: 1 %}
+      <span aria-hidden="true">/</span>
+      <span>{{ current_tags | join: " + " }}</span>
+      {% capture tag_item %}{"@type": "ListItem", "position": {{ position }}, "name": "{{ current_tags | join: ' + ' }}"}{% endcapture %}
+      {% assign breadcrumb_items = breadcrumb_items | push: tag_item %}
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% capture blog_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ blog.title | json }}, "item": "{{ shop.url }}{{ blog.url }}"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: blog_item %}
+    {% endif %}
+  {% elsif template == 'article' %}
+    <span aria-hidden="true">/</span>
+    {{ blog.title | link_to: blog.url }}
+    {% capture blog_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ blog.title | json }}, "item": "{{ shop.url }}{{ blog.url }}"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: blog_item %}
+    {% assign position = position | plus: 1 %}
+    <span aria-hidden="true">/</span>
+    <span>{{ article.title }}</span>
+    {% capture article_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ article.title | json }}, "item": "{{ shop.url }}{{ article.url }}"}{% endcapture %}
+    {% assign breadcrumb_items = breadcrumb_items | push: article_item %}
+  {% else %}
+   <span aria-hidden="true">/</span>
+   <span>{{ page_title }}</span>
+   {% capture page_item %}{"@type": "ListItem", "position": {{ position }}, "name": {{ page_title | json }}}{% endcapture %}
+   {% assign breadcrumb_items = breadcrumb_items | push: page_item %}
+  {% endif %}
+</nav>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{ breadcrumb_items | join: ',' }}
+  ]
+}
+</script>
+{% endunless %}
